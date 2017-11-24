@@ -1,39 +1,49 @@
 <template>
-  <div class="slider">
-    <el-carousel indicator-position="outside">
-      <el-carousel-item v-for="item in 4" :key="item">
-        <h3>{{ item }}</h3>
-      </el-carousel-item>
-    </el-carousel>
+  <div class="search-wrap">
+    <div class="search-box">
+      <div class="title">豆瓣电影</div>
+      <div class="search">
+        <el-input placeholder="请输入内容" v-model="searchVal" size="small">
+          <el-button slot="append" icon="el-icon-search"></el-button>
+        </el-input>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-
+  export default {
+    data() {
+      return {
+        searchVal: null
+      }
+    }
+  }
 </script>
 
 <style scoped>
-  .slider {
-    /*width: 1200px;*/
+  .search-wrap {
+    background: #e9e9e2;
+  }
+
+  .search-box {
+    width: 1200px;
+    height: 70px;
     margin: 0 auto;
-    height: 100px;
-  }
-  .el-carousel__container {
-    height: 100px;
-  }
-  .el-carousel__item h3 {
-    color: #475669;
-    font-size: 18px;
-    opacity: 0.75;
-    line-height: 100px;
-    margin: 0;
   }
 
-  .el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
+  .title {
+    display: inline-block;
+    line-height: 70px;
+    font-weight: bolder;
+    color: rgba(0, 0, 0, 0.42);
+    font-size: 22px;
   }
 
-  .el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
+  .search {
+    display: inline-block;
+    line-height: 70px;
+    margin-left: 20px;
+    width: 600px;
   }
 </style>

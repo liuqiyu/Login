@@ -31,31 +31,32 @@
   }
 
   .header-box {
-    width: 1200px;
+    /*width: 1200px;*/
+    padding: 0 100px;
     margin: 0 auto;
-    height: 40px;
+    height: 30px;
     display: flex;
     flex-direction: row;
   }
 
   .header-box .title {
-    line-height: 40px;
-    font-size: 20px;
+    line-height: 30px;
+    font-size: 14px;
     color: #fff;
   }
 
   .header-nav {
-    margin-left: 40px;
+    margin-left: 20px;
   }
 
   .nav-item {
     display: inline-block;
-    width: 40px;
-    height: 40px;
+    width: 30px;
+    height: 30px;
     text-align: center;
-    line-height: 50px;
+    line-height: 35px;
     color: rgba(255, 255, 255, .85);
-    font-size: 14px;
+    font-size: 12px;
   }
 
   .nav-item:hover {
