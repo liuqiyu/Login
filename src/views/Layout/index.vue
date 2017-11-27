@@ -2,7 +2,7 @@
   <div>
     <topNav></topNav>
     <search></search>
-    <router-view></router-view>
+    <router-view class="content"></router-view>
   </div>
 </template>
 
@@ -19,5 +19,9 @@
 </script>
 
 <style>
-
+  .content {
+    width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+  }
 </style>

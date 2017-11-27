@@ -1,7 +1,7 @@
 <template>
   <div class="search-wrap">
     <div class="search-box">
-      <div class="title">豆瓣电影</div>
+      <div class="title">{{ getTitle }}</div>
       <div class="search">
         <el-input placeholder="请输入内容" v-model="searchVal" size="small">
           <el-button slot="append" icon="el-icon-search"></el-button>
@@ -12,11 +12,17 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
-    data() {
+    data () {
       return {
         searchVal: null
       }
+    },
+    computed: {
+      ...mapGetters([
+        'getTitle'
+      ])
     }
   }
 </script>

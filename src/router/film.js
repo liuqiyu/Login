@@ -6,7 +6,7 @@
  * @constructor
  */
 
-const Film = r => require.ensure([], () => r(require('@/views/film/')), 'Film')
+const Film = r => require.ensure([], () => r(require('@/views/film')), 'Film')
 
 export default {
   path: '/Film',

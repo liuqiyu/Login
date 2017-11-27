@@ -3,9 +3,9 @@
     <div class="header-box">
       <div class="title">豆瓣网站</div>
       <div class="header-nav">
-        <router-link to="/" class="nav-item">电影</router-link>
-        <router-link to="/1" class="nav-item">读书</router-link>
-        <router-link to="/2" class="nav-item">音乐</router-link>
+        <router-link to="/Film" class="nav-item">电影</router-link>
+        <router-link to="/Read" class="nav-item">读书</router-link>
+        <router-link to="/Music" class="nav-item">音乐</router-link>
       </div>
     </div>
   </header>
@@ -13,10 +13,10 @@
 
 <script>
   export default {
-    data() {
+    data () {
       return {
         activeIndex: '1'
-      };
+      }
     },
     methods: {
     }
@@ -54,7 +54,7 @@
     width: 30px;
     height: 30px;
     text-align: center;
-    line-height: 35px;
+    line-height: 32px;
     color: rgba(255, 255, 255, .85);
     font-size: 12px;
   }

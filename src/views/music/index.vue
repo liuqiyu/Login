@@ -4,7 +4,7 @@
       <el-row :gutter="20">
         <el-col :span="6">
           <div class="data-item">
-            电影
+            音乐
           </div>
         </el-col>
         <el-col :span="6">
@@ -40,7 +40,7 @@
 <script>
   export default {
     created () {
-      this.$store.commit('title_update', '豆瓣电影');
+      this.$store.commit('title_update', '豆瓣音乐');
     }
   }
 </script>
