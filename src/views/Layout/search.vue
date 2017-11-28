@@ -8,16 +8,22 @@
         </el-input>
       </div>
     </div>
+    <typeTabs></typeTabs>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
+  import typeTabs from './typeTabs'
+
   export default {
     data () {
       return {
         searchVal: null
       }
+    },
+    components: {
+      typeTabs
     },
     computed: {
       ...mapGetters([
