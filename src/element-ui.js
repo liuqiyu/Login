@@ -4,13 +4,17 @@ import {
   Button,
   Input,
   Row,
-  Col
+  Col,
+  Card,
+  Rate
 } from 'element-ui'
 
 Vue.use(Button)
 Vue.use(Input)
 Vue.use(Row)
 Vue.use(Col)
+Vue.use(Card)
+Vue.use(Rate)
 
 // 按需加载
 // import {

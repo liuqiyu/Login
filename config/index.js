@@ -13,7 +13,7 @@ module.exports = {
     // 解决跨域问题
     proxyTable: {
       '/api': {
-        target: 'http://192.168.4.71:8080/', // 链接
+        target: 'https://api.douban.com', // 链接
         changeOrigin: true,
         pathRewrite: {
           '^/api': '/'

@@ -40,7 +40,7 @@
 <script>
   export default {
     created () {
-      this.$store.commit('title_update', '豆瓣音乐');
+      this.$store.commit('title_update', '豆瓣音乐')
     }
   }
 </script>

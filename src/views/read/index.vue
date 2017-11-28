@@ -2,32 +2,32 @@
   <div>
     <div class="data-list">
       <el-row :gutter="20">
-        <el-col :span="6">
+        <el-col :span="4">
           <div class="data-item">
             读书
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <div class="data-item">
 
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <div class="data-item">
 
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <div class="data-item">
 
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <div class="data-item">
 
           </div>
         </el-col>
-        <el-col :span="6">
+        <el-col :span="4">
           <div class="data-item">
 
           </div>
@@ -40,7 +40,7 @@
 <script>
   export default {
     created () {
-      this.$store.commit('title_update', '豆瓣读书');
+      this.$store.commit('title_update', '豆瓣读书')
     }
   }
 </script>
