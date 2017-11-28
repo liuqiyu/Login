@@ -1,6 +1,6 @@
 <template>
   <div class="search-wrap">
-    <div class="search-box">
+    <div class="search-box common-w">
       <div class="title">{{ getTitle }}</div>
       <div class="search">
         <el-input placeholder="请输入内容" v-model="searchVal" size="small">
@@ -14,7 +14,7 @@
 
 <script>
   import { mapGetters } from 'vuex'
-  import typeTabs from './typeTabs'
+  import typeTabs from '../film/typeTabs'
 
   export default {
     data () {
@@ -39,9 +39,7 @@
   }
 
   .search-box {
-    width: 1200px;
     height: 70px;
-    margin: 0 auto;
   }
 
   .title {

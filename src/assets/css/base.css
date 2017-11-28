@@ -19,7 +19,7 @@ time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 100%;
+  /*font-size: 100%;*/
   font: inherit;
   vertical-align: baseline;
   text-decoration: none;
@@ -70,4 +70,12 @@ table {
 /** 评星 **/
 .el-rate__icon {
   font-size: 12px !important;
+}
+
+
+/** 公共宽度 **/
+
+.common-w {
+  width: 1200px;
+  margin: 0 auto;
 }

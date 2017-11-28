@@ -2,7 +2,7 @@
   <div>
     <topNav></topNav>
     <search></search>
-    <router-view class="content"></router-view>
+    <router-view class="content common-w"></router-view>
   </div>
 </template>
 
@@ -20,8 +20,6 @@
 
 <style>
   .content {
-    width: 1200px;
-    margin: 0 auto;
     background: #fff;
   }
 </style>

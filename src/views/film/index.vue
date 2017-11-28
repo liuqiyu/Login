@@ -31,6 +31,10 @@
   import film from './../../api/film'
 
   export default {
+    beforeRouteUpdate (to, from, next) {
+      next()
+      this.toGet();
+    },
     data () {
       return {
         lists: []
@@ -39,11 +43,38 @@
     created () {
       // 标题
       this.$store.commit('title_update', '豆瓣电影')
-
-      // 获取正在热映的电影
-      this.getInTheatersData()
+      this.toGet()
     },
     methods: {
+      toGet () {
+        const type = this.$route.query.type
+
+        switch (type) {
+          case undefined:
+            this.getInTheatersData()
+            break
+          case 'in_theaters':
+            this.getInTheatersData()
+            break
+          case 'coming_soon':
+            this.getComingSoonData()
+            break
+          case 'top250':
+            this.getTop250Data()
+            break
+          case 'usBox':
+            this.getUsBoxData()
+            break
+//          case 'weekly':
+//            this.getWeeklyData()
+//            break
+//          case 'new_movies':
+//            this.getNewMoviesData()
+//            break
+          default:
+            break
+        }
+      },
       getInTheatersData () {
         const city = '深圳'
         film.inTheaters(city).then((res) => {
@@ -52,7 +83,47 @@
             this.lists = data
           }
         })
-      }
+      },
+      getComingSoonData () {
+        film.comingSoon().then((res) => {
+          if (res.status === 200) {
+            const data = res.data.subjects
+            this.lists = data
+          }
+        })
+      },
+      getTop250Data () {
+        film.top250().then((res) => {
+          if (res.status === 200) {
+            const data = res.data.subjects
+            this.lists = data
+          }
+        })
+      },
+      getUsBoxData () {
+        film.weekly().then((res) => {
+          if (res.status === 200) {
+            const data = res.data.subjects
+            this.lists = data
+          }
+        })
+      },
+//      getWeeklyData () {
+//        film.weekly().then((res) => {
+//          if (res.status === 200) {
+//            const data = res.data.subjects
+//            this.lists = data
+//          }
+//        })
+//      },
+//      getNewMoviesData () {
+//        film.newMovies().then((res) => {
+//          if (res.status === 200) {
+//            const data = res.data.subjects
+//            this.lists = data
+//          }
+//        })
+//      }
     }
   }
 </script>
