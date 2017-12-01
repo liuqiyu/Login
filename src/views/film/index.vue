@@ -14,6 +14,7 @@
                   <el-rate
                     v-model="item.rating.average/2"
                     disabled
+                    score-template="{item.rating.average/2}"
                     :max="item.rating.max/2">
                   </el-rate>
                 </span>
@@ -33,7 +34,7 @@
   export default {
     beforeRouteUpdate (to, from, next) {
       next()
-      this.toGet();
+      this.toGet()
     },
     data () {
       return {
@@ -65,12 +66,6 @@
           case 'usBox':
             this.getUsBoxData()
             break
-//          case 'weekly':
-//            this.getWeeklyData()
-//            break
-//          case 'new_movies':
-//            this.getNewMoviesData()
-//            break
           default:
             break
         }
@@ -101,29 +96,18 @@
         })
       },
       getUsBoxData () {
-        film.weekly().then((res) => {
+        film.usBox().then((res) => {
           if (res.status === 200) {
             const data = res.data.subjects
-            this.lists = data
+            const arr = []
+
+            for (let i = 0; i < data.length; i += 1) {
+              arr.push(data[i].subject)
+            }
+            this.lists = arr
           }
         })
-      },
-//      getWeeklyData () {
-//        film.weekly().then((res) => {
-//          if (res.status === 200) {
-//            const data = res.data.subjects
-//            this.lists = data
-//          }
-//        })
-//      },
-//      getNewMoviesData () {
-//        film.newMovies().then((res) => {
-//          if (res.status === 200) {
-//            const data = res.data.subjects
-//            this.lists = data
-//          }
-//        })
-//      }
+      }
     }
   }
 </script>
