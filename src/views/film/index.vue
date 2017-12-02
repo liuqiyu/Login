@@ -14,6 +14,7 @@
                   <el-rate
                     v-model="item.rating.average/2"
                     disabled
+                    score-template="{item.rating.average/2}"
                     :max="item.rating.max/2">
                   </el-rate>
                 </span>
@@ -101,13 +102,18 @@
         })
       },
       getUsBoxData () {
-        film.weekly().then((res) => {
+        film.usBox().then((res) => {
           if (res.status === 200) {
             const data = res.data.subjects
-            this.lists = data
+            const arr = []
+
+            for (let i = 0; i < data.length; i += 1) {
+              arr.push(data[i].subject)
+            }
+            this.lists = arr
           }
         })
-      }
+      },
 //      getWeeklyData () {
 //        film.weekly().then((res) => {
 //          if (res.status === 200) {

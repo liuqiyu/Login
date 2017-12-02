@@ -72,6 +72,10 @@ table {
   font-size: 12px !important;
 }
 
+.el-rate__icon {
+  margin-right: 3px;
+}
+
 
 /** 公共宽度 **/
 
