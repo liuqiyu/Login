@@ -1,6 +1,7 @@
 import Vue from 'vue'
 
 import {
+  Pagination,
   Button,
   Input,
   Row,
@@ -9,6 +10,7 @@ import {
   Rate
 } from 'element-ui'
 
+Vue.use(Pagination)
 Vue.use(Button)
 Vue.use(Input)
 Vue.use(Row)
