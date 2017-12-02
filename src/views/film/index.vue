@@ -33,7 +33,7 @@
   export default {
     beforeRouteUpdate (to, from, next) {
       next()
-      this.toGet();
+      this.toGet()
     },
     data () {
       return {
@@ -107,7 +107,7 @@
             this.lists = data
           }
         })
-      },
+      }
 //      getWeeklyData () {
 //        film.weekly().then((res) => {
 //          if (res.status === 200) {
