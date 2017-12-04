@@ -3,10 +3,12 @@
  */
 
 import axios from 'axios'
+import config from './../config'
 
 // 创建axios实例
 const instance = axios.create({
-  baseURL: '/api',
+  // baseURL: '/api',
+  baseURL: config.apiHost,
   // 是否跨域
   withCredentials: true
   // params: {
