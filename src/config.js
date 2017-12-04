@@ -19,4 +19,6 @@ if (Environment && Environment === 'production') {
   console.log(apiHost)
 }
 
-export default apiHost
+export default {
+  apiHost
+}
