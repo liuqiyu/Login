@@ -4,6 +4,7 @@
 
 import axios from 'axios'
 import config from './../config'
+console.log(config.apiHost)
 
 // 创建axios实例
 const instance = axios.create({
