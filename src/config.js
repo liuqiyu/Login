@@ -13,3 +13,10 @@ if (Environment && Environment === 'development') {
   apiHost = `${location.protocol}//${location.host}`
   console.log(apiHost)
 }
+
+if (Environment && Environment === 'production') {
+  apiHost = 'https://api.douban.com'
+  console.log(apiHost)
+}
+
+export default apiHost
