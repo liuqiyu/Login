@@ -4,8 +4,7 @@
  * </p>
  */
 
-
-console.log(process.env.NODE_ENV);
+console.log(process.env.NODE_ENV)
 let apiHost = ''
 
 const Environment = process.env.NODE_ENV

@@ -16,6 +16,7 @@ import './config.js'
 Vue.use(VueBus)
 Vue.config.productionTip = false
 
+alert(312)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
