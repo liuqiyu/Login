@@ -6,6 +6,7 @@ import Read from './read'
 import Music from './music'
 
 const Index = r => require.ensure([], () => r(require('@/views/Layout/index')), 'Index')
+const Login = r => require.ensure([], () => r(require('@/views/basics/login')), 'Index')
 
 Vue.use(Router)
 
@@ -15,13 +16,17 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
-      redirect: '/Film',
       component: Index,
       children: [
         Film,
         Read,
         Music
       ]
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login
     }
   ]
 })
