@@ -25,31 +25,44 @@
         </el-col>
       </el-row>
     </div>
+    <ixPagination v-if="showPage" :total="total" :size="size" :currentPage="currentPage"></ixPagination>
   </div>
 </template>
 
 <script>
   import film from './../../api/film'
+  import ixPagination from '../../components/ixPagination'
 
   export default {
     beforeRouteUpdate (to, from, next) {
       next()
       this.toGet()
     },
-    data () {
-      return {
-        lists: []
-      }
-    },
     created () {
+      this.$bus.$on('change/page', this.changePage)
       // 标题
       this.$store.commit('title_update', '豆瓣电影')
       this.toGet()
     },
+    beforeDestory () {
+      this.$bus.$off('change/page', this.changePage)
+    },
+    data () {
+      return {
+        lists: [],
+        total: 0,
+        currentPage: 1,
+        size: 1,
+        start: 0,
+        showPage: false
+      }
+    },
+    components: {
+      ixPagination
+    },
     methods: {
       toGet () {
         const type = this.$route.query.type
-
         switch (type) {
           case undefined:
             this.getInTheatersData()
@@ -66,16 +79,27 @@
           case 'usBox':
             this.getUsBoxData()
             break
+//          case 'weekly':
+//            this.getWeeklyData()
+//            break
+//          case 'new_movies':
+//            this.getNewMoviesData()
+//            break
           default:
             break
         }
       },
       getInTheatersData () {
         const city = '深圳'
-        film.inTheaters(city).then((res) => {
+        film.inTheaters(city, this.size, this.start).then((res) => {
           if (res.status === 200) {
             const data = res.data.subjects
             this.lists = data
+            this.total = res.data.total
+            console.log(this.total)
+            console.log(this.currentPage)
+            console.log(this.size)
+            console.log(this.start)
           }
         })
       },
@@ -107,7 +131,27 @@
             this.lists = arr
           }
         })
+      },
+      changePage (page) {
+        this.start = this.size * (page - 1)
+        this.getInTheatersData()
       }
+//      getWeeklyData () {
+//        film.weekly().then((res) => {
+//          if (res.status === 200) {
+//            const data = res.data.subjects
+//            this.lists = data
+//          }
+//        })
+//      },
+//      getNewMoviesData () {
+//        film.newMovies().then((res) => {
+//          if (res.status === 200) {
+//            const data = res.data.subjects
+//            this.lists = data
+//          }
+//        })
+//      }
     }
   }
 </script>

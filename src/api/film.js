@@ -15,9 +15,11 @@ const path = {
   newMovies: 'v2/movie/new_movies'        // 新片榜
 }
 
-const inTheaters = city => api.get(path.inTheaters, {
+const inTheaters = (city, count, start) => api.get(path.inTheaters, {
   params: {
-    city: city
+    city: city,
+    count: count,
+    start: start
   }
 })
 
