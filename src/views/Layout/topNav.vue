@@ -10,9 +10,9 @@
         </div>
       </div>
       <div class="header-r">
-        <el-button type="" size="mini" v-if="isLogin">用户1</el-button>
-        <el-button @click="logout" type="" size="mini" v-if="isLogin">注销</el-button>
-        <el-button type="" size="mini" v-if="!isLogin">登录</el-button>
+        <span v-if="isLogin">用户1</span>
+        <span @click="logout" v-if="isLogin">注销</span>
+        <span v-if="!isLogin">登录</span>
       </div>
     </div>
   </header>
@@ -101,5 +101,13 @@
 
   .user {
     float: right;
+  }
+
+  .header-r span {
+    font-size: 12px;
+    line-height: 30px;
+    margin: 0 5px;
+    color: #fff;
+    cursor: pointer;
   }
 </style>
