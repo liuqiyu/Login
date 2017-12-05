@@ -3,3 +3,4 @@
 /dist/
 /*.js/
 src/login.js/
+/src/utils/lazyLoad.js

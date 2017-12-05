@@ -25,16 +25,11 @@
             url: '/Film',
             type: 'top250',
             name: 'Top250'
-          },
-          {
-            url: '/Film',
-            type: 'usBox',
-            name: '北美票房榜'
           }
 //          {
 //            url: '/Film',
-//            type: 'new_movies',
-//            name: '新片榜'
+//            type: 'usBox',
+//            name: '北美票房榜'
 //          }
         ],
         activeTabs: 'activeTabs'

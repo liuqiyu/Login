@@ -5,6 +5,7 @@ import App from './App'
 import VueBus from 'vue-bus'
 import router from './router'
 import store from './vuex'
+import LazyLoad from './utils/lazyLoad'
 import './element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import './assets/css/base.css'
@@ -14,6 +15,7 @@ import './config.js'
 //
 // Vue.use(IX)
 Vue.use(VueBus)
+Vue.use(LazyLoad)
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

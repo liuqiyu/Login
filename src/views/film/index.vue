@@ -1,36 +1,13 @@
 <template>
   <div>
-    <div class="data-list">
-      <el-row :gutter="20">
-        <el-col :span="4" v-for="(item, index) in lists" :key="index">
-          <el-card :body-style="{ padding: '0px' }" class="elcard">
-            <div class="image-box">
-              <img :src="item.images.small" class="image">
-            </div>
-            <div style="padding: 14px;">
-              <div class="item-name">{{ item.title}}</div>
-              <div class="bottom">
-                <span class="rate">
-                  <el-rate
-                    v-model="item.rating.average/2"
-                    disabled
-                    score-template="{item.rating.average/2}"
-                    :max="item.rating.max/2">
-                  </el-rate>
-                </span>
-                <span class="year">{{item.year}}</span>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </div>
+    <list :lists="lists" :noData="noData"></list>
     <ixPagination v-if="showPage" :total="total" :size="size" :currentPage="currentPage"></ixPagination>
   </div>
 </template>
 
 <script>
   import film from './../../api/film'
+  import list from './list'
   import ixPagination from '../../components/ixPagination'
 
   export default {
@@ -52,16 +29,20 @@
         lists: [],
         total: 0,
         currentPage: 1,
-        size: 1,
+        size: 18,
         start: 0,
-        showPage: false
+        showPage: false,
+        noData: true
       }
     },
     components: {
-      ixPagination
+      ixPagination,
+      list
     },
     methods: {
       toGet () {
+        this.noData = true
+        this.showPage = false
         const type = this.$route.query.type
         switch (type) {
           case undefined:
@@ -79,12 +60,6 @@
           case 'usBox':
             this.getUsBoxData()
             break
-//          case 'weekly':
-//            this.getWeeklyData()
-//            break
-//          case 'new_movies':
-//            this.getNewMoviesData()
-//            break
           default:
             break
         }
@@ -96,31 +71,35 @@
             const data = res.data.subjects
             this.lists = data
             this.total = res.data.total
-            console.log(this.total)
-            console.log(this.currentPage)
-            console.log(this.size)
-            console.log(this.start)
+            this.showPage = true
+            this.noData = false
           }
         })
       },
       getComingSoonData () {
-        film.comingSoon().then((res) => {
+        film.comingSoon(this.size, this.start).then((res) => {
           if (res.status === 200) {
             const data = res.data.subjects
             this.lists = data
+            this.total = res.data.total
+            this.showPage = true
+            this.noData = false
           }
         })
       },
       getTop250Data () {
-        film.top250().then((res) => {
+        film.top250(this.size, this.start).then((res) => {
           if (res.status === 200) {
             const data = res.data.subjects
             this.lists = data
+            this.total = res.data.total
+            this.showPage = true
+            this.noData = false
           }
         })
       },
       getUsBoxData () {
-        film.usBox().then((res) => {
+        film.usBox(this.size, this.start).then((res) => {
           if (res.status === 200) {
             const data = res.data.subjects
             const arr = []
@@ -134,24 +113,9 @@
       },
       changePage (page) {
         this.start = this.size * (page - 1)
-        this.getInTheatersData()
+        this.currentPage = page
+        this.toGet()
       }
-//      getWeeklyData () {
-//        film.weekly().then((res) => {
-//          if (res.status === 200) {
-//            const data = res.data.subjects
-//            this.lists = data
-//          }
-//        })
-//      },
-//      getNewMoviesData () {
-//        film.newMovies().then((res) => {
-//          if (res.status === 200) {
-//            const data = res.data.subjects
-//            this.lists = data
-//          }
-//        })
-//      }
     }
   }
 </script>

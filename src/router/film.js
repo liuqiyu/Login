@@ -6,18 +6,18 @@
  * @constructor
  */
 
-const Film = r => require.ensure([], () => r(require('@/views/film/in_theaters')), 'Film')
-const InTheaters = r => require.ensure([], () => r(require('@/views/film/in_theaters')), 'Film')
+const Film = r => require.ensure([], () => r(require('@/views/film/index')), 'Film')
+// const InTheaters = r => require.ensure([], () => r(require('@/views/film/in_theaters')), 'Film')
 
 export default {
   path: '/Film',
   name: 'Film',
-  component: Film,
-  children: [
-    {
-      path: 'InTheaters',
-      name: 'InTheaters',
-      component: InTheaters
-    }
-  ]
+  component: Film
+  // children: [
+  //   {
+  //     path: 'InTheaters',
+  //     name: 'InTheaters',
+  //     component: InTheaters
+  //   }
+  // ]
 }

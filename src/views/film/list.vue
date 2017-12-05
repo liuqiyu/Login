@@ -1,14 +1,16 @@
 <template>
-  <div class="data-list">
-    <el-row :gutter="20">
-      <el-col :span="4" v-for="(item, index) in lists" :key="index">
-        <el-card :body-style="{ padding: '0px' }" class="elcard">
-          <div class="image-box">
-            <img :src="item.images.small" class="image">
-          </div>
-          <div style="padding: 14px;">
-            <div class="item-name">{{ item.title}}</div>
-            <div class="bottom">
+  <div>
+    <div class="data-list" v-if="!noData">
+      <el-row :gutter="20">
+        <el-col :span="4" v-for="(item, index) in lists" :key="index">
+          <el-card :body-style="{ padding: '0px' }" class="elcard">
+            <div class="image-box" @click="realLink(item)">
+              <img :src="item.images.small" class="image">
+              <!--<img v-lazyload="item.images.small" class="image" src="./../../assets/logo.png">-->
+            </div>
+            <div style="padding: 14px;" @click="realLink(item)">
+              <div class="item-name">{{ item.title}}</div>
+              <div class="bottom">
                 <span class="rate">
                   <el-rate
                     v-model="item.rating.average/2"
@@ -17,19 +19,38 @@
                     :max="item.rating.max/2">
                   </el-rate>
                 </span>
-              <span class="year">{{item.year}}</span>
+                <span class="year">{{item.year}}</span>
+              </div>
             </div>
-          </div>
-        </el-card>
-      </el-col>
-    </el-row>
+          </el-card>
+        </el-col>
+      </el-row>
+    </div>
+    <div class="no-data" v-if="noData">
+      <img src="./../../assets/images/no-data.gif" alt="">
+    </div>
   </div>
 </template>
 
 <script>
   export default {
     props: {
-      lists: null
+      lists: null,
+      noData: {
+        type: Boolean,
+        default: true
+      }
+    },
+    watch: {
+      lists (newVal, oldVal) {
+        console.log(newVal)
+        console.log(oldVal.length === 0)
+      }
+    },
+    methods: {
+      realLink (item) {
+        window.open(item.alt)
+      }
     }
   }
 </script>
@@ -80,5 +101,10 @@
     padding: 0;
     font-size: 13px;
     color: #999;
+  }
+
+  .no-data {
+    text-align: center;
+    padding: 20px;
   }
 </style>

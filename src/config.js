@@ -15,8 +15,7 @@ if (Environment && Environment === 'development') {
 }
 
 if (Environment && Environment === 'production') {
-  // apiHost = 'https://api.douban.com/'
-  apiHost = `${location.protocol}//${location.host}/api`
+  apiHost = 'https://api.douban.com/'
   console.log(apiHost)
 }
 

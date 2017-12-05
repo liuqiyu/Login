@@ -23,11 +23,26 @@ const inTheaters = (city, count, start) => api.get(path.inTheaters, {
   }
 })
 
-const comingSoon = city => api.get(path.comingSoon)
+const comingSoon = (count, start) => api.get(path.comingSoon, {
+  params: {
+    count: count,
+    start: start
+  }
+})
 
-const usBox = city => api.get(path.usBox)
+const usBox = (count, start) => api.get(path.usBox, {
+  params: {
+    count: count,
+    start: start
+  }
+})
 
-const top250 = city => api.get(path.top250)
+const top250 = (count, start) => api.get(path.top250, {
+  params: {
+    count: count,
+    start: start
+  }
+})
 
 const weekly = city => api.get(path.weekly)
 
