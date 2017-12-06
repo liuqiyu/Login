@@ -1,8 +1,6 @@
 <template>
-  <div class="type-tabs">
-    <div class="common-w">
-      <router-link :exact-active-class="activeTabs" :key="index" v-for="(item, index) in dataTypes" :to="{path: item.url, query: {type: item.type}}" class="tab-item">{{ item.name }}</router-link>
-    </div>
+  <div class="type-tabs common-w">
+    <router-link :exact-active-class="activeTabs" :key="index" v-for="(item, index) in dataTypes" :to="{path: item.url }" class="tab-item">{{ item.name }}</router-link>
   </div>
 </template>
 
@@ -12,25 +10,20 @@
       return {
         dataTypes: [
           {
-            url: '/Film',
+            url: '/Film/InTheaters',
             type: 'in_theaters',
             name: '正在热映'
           },
           {
-            url: '/Film',
+            url: '/Film/ComingSoon',
             type: 'coming_soon',
             name: '即将上映'
           },
           {
-            url: '/Film',
+            url: '/Film/Top250',
             type: 'top250',
             name: 'Top250'
           }
-//          {
-//            url: '/Film',
-//            type: 'usBox',
-//            name: '北美票房榜'
-//          }
         ],
         activeTabs: 'activeTabs'
       }
@@ -40,9 +33,8 @@
 
 <style scoped>
   .type-tabs {
-    width: 100%;
     padding: 15px 0;
-    border-top: 1px solid rgba(0,0,0, 0.04);
+    border-bottom: 1px solid rgba(0,0,0, 0.1);
   }
 
   .tab-item {

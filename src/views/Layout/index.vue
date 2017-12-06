@@ -1,27 +1,26 @@
 <template>
   <div>
-    <topNav></topNav>
-    <search></search>
-    <router-view class="content common-w"></router-view>
+    <ixTopNav></ixTopNav>
+    <router-view class="content"></router-view>
     <ixFooter v-if="showFooter"></ixFooter>
   </div>
 </template>
 
 <script>
-  import topNav from './topNav'
-  import search from './search'
-  import ixFooter from '../../components/ixFooter'
+  import ixTopNav from './ixTopNav'
+  import ixFooter from './ixFooter'
 
   export default {
     created () {
       this.$bus.$on('show/footer', this.showFoot)
+      this.$bus.$on('hide/footer', this.hideFoot)
     },
     beforeDestory () {
       this.$bus.$off('show/footer', this.showFoot)
+      this.$bus.$off('hide/footer', this.hideFoot)
     },
     components: {
-      topNav,
-      search,
+      ixTopNav,
       ixFooter
     },
     data () {
@@ -32,6 +31,9 @@
     methods: {
       showFoot () {
         this.showFooter = true
+      },
+      hideFoot () {
+        this.showFooter = false
       }
     }
   }

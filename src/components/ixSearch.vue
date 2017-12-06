@@ -3,32 +3,35 @@
     <div class="search-box common-w">
       <div class="title">{{ getTitle }}</div>
       <div class="search">
-        <el-input placeholder="请输入内容" v-model="searchVal" size="small">
-          <el-button slot="append" icon="el-icon-search"></el-button>
+        <el-input placeholder="请输入内容" v-model="searchVal" size="small" @keyup.enter.native="submit">
+          <el-button slot="append" icon="el-icon-search" @click="submit"></el-button>
         </el-input>
       </div>
     </div>
-    <typeTabs></typeTabs>
   </div>
 </template>
 
 <script>
   import { mapGetters } from 'vuex'
-  import typeTabs from '../film/typeTabs'
 
   export default {
     data () {
       return {
-        searchVal: null
+        searchVal: ''
       }
-    },
-    components: {
-      typeTabs
     },
     computed: {
       ...mapGetters([
         'getTitle'
       ])
+    },
+    methods: {
+      submit () {
+        console.log(this.$route.matched[1].path)
+        console.log(this.searchVal)
+        this.$router.push({path: this.$route.matched[1].path + '/Search', query: {q: this.searchVal}})
+        // this.$bus.$emit('search/list', this.searchVal)
+      }
     }
   }
 </script>

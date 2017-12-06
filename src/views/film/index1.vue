@@ -2,7 +2,8 @@
   <div>
     <ixSearch></ixSearch>
     <ixTypeTabs></ixTypeTabs>
-    <list :lists="lists" :noData="noData"></list>
+    <router-view></router-view>
+    <!--<list :lists="lists" :noData="noData"></list>-->
     <ixPagination v-if="showPage" :total="total" :size="size" :currentPage="currentPage"></ixPagination>
   </div>
 </template>
@@ -21,12 +22,14 @@
     },
     created () {
       this.$bus.$on('change/page', this.changePage)
+      this.$bus.$on('search/list', this.searchList)
       // 标题
-      this.$store.commit('title_update', '豆瓣读书')
+      this.$store.commit('title_update', '豆瓣电影')
       this.toGet()
     },
     beforeDestory () {
       this.$bus.$off('change/page', this.changePage)
+      this.$bus.$off('search/list', this.searchList)
     },
     data () {
       return {
@@ -46,6 +49,18 @@
       list
     },
     methods: {
+      searchList (searchVal) {
+        film.search(searchVal, this.size, this.start).then((res) => {
+          if (res.status === 200) {
+            const data = res.data.subjects
+            this.lists = data
+            this.total = res.data.total
+            this.showPage = true
+            this.noData = false
+            this.$bus.$emit('show/footer')
+          }
+        })
+      },
       toGet () {
         this.noData = true
         this.showPage = false
@@ -67,19 +82,6 @@
           default:
             break
         }
-      },
-      getInTheatersData () {
-        const city = '深圳'
-        film.inTheaters(city, this.size, this.start).then((res) => {
-          if (res.status === 200) {
-            const data = res.data.subjects
-            this.lists = data
-            this.total = res.data.total
-            this.showPage = true
-            this.noData = false
-            this.$bus.$emit('show/footer')
-          }
-        })
       },
       getComingSoonData () {
         film.comingSoon(this.size, this.start).then((res) => {
