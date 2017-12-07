@@ -16,6 +16,7 @@ export default {
   path: '/Film',
   name: 'Film',
   component: Film,
+  redirect: '/Film/InTheaters',
   children: [
     {
       path: 'Search',

@@ -16,6 +16,7 @@ export default new Router({
     {
       path: '/',
       name: 'Index',
+      redirect: '/Film/InTheaters',
       component: Index,
       children: [
         Film,

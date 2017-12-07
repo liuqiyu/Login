@@ -2,7 +2,7 @@
   <div>
     <ixSearch></ixSearch>
     <ixTypeTabs></ixTypeTabs>
-    <list :lists="lists" :noData="noData"></list>
+    <list :lists="lists" :requesting="requesting"></list>
     <ixPagination v-if="showPage" :total="total" :size="size" :currentPage="currentPage"></ixPagination>
   </div>
 </template>
@@ -36,7 +36,7 @@
         size: 18,
         start: 0,
         showPage: false,
-        noData: true
+        requesting: true
       }
     },
     components: {
@@ -47,7 +47,7 @@
     },
     methods: {
       toGet () {
-        this.noData = true
+        this.requesting = true
         this.showPage = false
         this.$bus.$emit('hide/footer')
         const type = this.$route.query.type
@@ -76,7 +76,7 @@
             this.lists = data
             this.total = res.data.total
             this.showPage = true
-            this.noData = false
+            this.requesting = false
             this.$bus.$emit('show/footer')
           }
         })
@@ -88,7 +88,7 @@
             this.lists = data
             this.total = res.data.total
             this.showPage = true
-            this.noData = false
+            this.requesting = false
             this.$bus.$emit('show/footer')
           }
         })
@@ -100,7 +100,7 @@
             this.lists = data
             this.total = res.data.total
             this.showPage = true
-            this.noData = false
+            this.requesting = false
             this.$bus.$emit('show/footer')
           }
         })

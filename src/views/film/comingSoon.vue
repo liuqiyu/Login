@@ -1,6 +1,6 @@
 <template>
   <div>
-    <list :lists="lists" :noData="noData"></list>
+    <list :lists="lists" :requesting="requesting"></list>
     <ixPagination v-if="showPage" :total="total" :size="size" :currentPage="currentPage"></ixPagination>
   </div>
 </template>
@@ -26,7 +26,7 @@
         size: 18,
         start: 0,
         showPage: false,
-        noData: true
+        requesting: true
       }
     },
     components: {
@@ -35,7 +35,7 @@
     },
     methods: {
       getDataList () {
-        this.noData = true
+        this.requesting = true
         this.showPage = false
         this.$bus.$emit('hide/footer')
         film.comingSoon(this.size, this.start).then((res) => {
@@ -45,7 +45,7 @@
             this.total = res.data.total
             this.$nextTick(() => {
               this.showPage = true
-              this.noData = false
+              this.requesting = false
               this.$bus.$emit('show/footer')
             })
           }

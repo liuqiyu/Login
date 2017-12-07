@@ -1,6 +1,6 @@
 <template>
   <div class="common-w">
-    <div class="data-list" v-if="!noData">
+    <div class="data-list" v-if="!requesting">
       <el-row :gutter="20">
         <el-col :span="4" v-for="(item, index) in lists" :key="index">
           <el-card :body-style="{ padding: '0px' }" class="elcard">
@@ -26,7 +26,7 @@
         </el-col>
       </el-row>
     </div>
-    <div class="no-data" v-if="noData">
+    <div class="no-data" v-if="requesting">
       <img src="./../../assets/images/no-data.gif" alt="">
     </div>
   </div>
@@ -36,7 +36,7 @@
   export default {
     props: {
       lists: null,
-      noData: {
+      requesting: {
         type: Boolean,
         default: true
       }
