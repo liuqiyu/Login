@@ -3,10 +3,10 @@
     <list :lists="lists" :requesting="requesting" v-if="showList"></list>
     <div class="no-search-list common-w" v-if="!showList" :style="{height: getContentHeight}">
       <p class="title">{{ searchTitle }}</p>
-      <p>没有找到关于 “213esds12343ttdgdsfgfds” 的电影，换个搜索词试试吧。</p>
-      <p>>查看正在热映</p>
-      <p>>查看即将上映</p>
-      <p>>查看Top250</p>
+      <p>没有找到关于 “{{ searchVal }}” 的电影，换个搜索词试试吧。</p>
+      <router-link to="/Film/InTheaters">>查看正在热映</router-link>
+      <router-link to="/Film/ComingSoon">>查看即将上映</router-link>
+      <router-link to="/Film/Top250">>查看Top250</router-link>
     </div>
     <ixPagination v-if="showPage" :total="total" :size="size" :currentPage="currentPage"></ixPagination>
   </div>
@@ -49,6 +49,9 @@
       }
     },
     computed: {
+      contentHeight () {
+        return this.$store.state.main.content_height
+      },
       ...mapGetters([
         'getContentHeight'
       ])
@@ -70,7 +73,21 @@
             if (data.length > 0) {
               this.total = res.data.total
               this.$nextTick(() => {
-                this.showPage = true
+                if (res.data.count >= res.data.total) {
+                  this.showPage = false
+                } else {
+                  this.showPage = true
+                }
+                setTimeout(() => {
+                  this.$store.commit('content_height_update', ['.header-box', '.search-wrap', '.type-tabs', 37])
+                  const $dataList = document.querySelector('.data-list')
+                  console.log($dataList.clientHeight)
+                  console.log(this.contentHeight)
+                  console.log(this.getContentHeight)
+                  if ($dataList.clientHeight <= this.contentHeight) {
+
+                  }
+                })
                 this.requesting = false
                 this.$bus.$emit('show/footer')
               })
@@ -80,6 +97,7 @@
               this.$store.commit('content_height_update', ['.header-box', '.search-wrap', '.type-tabs', 37])
               console.log(this.$store.getters.getContentHeight)
               this.$nextTick(() => {
+                this.showPage = false
                 this.requesting = false
                 this.showList = false
                 this.$bus.$emit('show/footer')
@@ -104,11 +122,17 @@
     padding: 20px;
   }
 
-  .no-search-list p {
+  .no-search-list p, .no-search-list a {
+    display: block;
     font-size: 12px;
     color: rgba(0,0,0,.7);
     margin-bottom: 20px;
     padding: 0 10px;
+  }
+
+  .no-search-list a {
+    text-decoration: underline;
+    color: #409EFF;
   }
 
   .no-search-list .title {
