@@ -26,20 +26,20 @@
         </el-col>
       </el-row>
     </div>
-    <div class="no-data" v-if="requesting">
+    <div class="requesting" v-if="requesting">
       <img src="./../../assets/images/no-data.gif" alt="">
     </div>
+    <ixPagination v-if="showPage" :total="total" :size="size" :currentPage="currentPage"></ixPagination>
   </div>
 </template>
 
 <script>
+  import ixPagination from '../../components/ixPagination'
+
   export default {
-    props: {
-      lists: null,
-      requesting: {
-        type: Boolean,
-        default: true
-      }
+    components: {
+      list,
+      ixPagination
     },
     watch: {
       lists (newVal, oldVal) {
@@ -103,7 +103,7 @@
     color: #999;
   }
 
-  .no-data {
+  .requesting {
     text-align: center;
     padding: 20px;
   }

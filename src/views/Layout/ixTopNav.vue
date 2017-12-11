@@ -5,8 +5,8 @@
         <div class="title">豆瓣网站</div>
         <div class="header-nav">
           <router-link to="/Film" class="nav-item">电影</router-link>
-          <router-link to="/Read" class="nav-item">读书</router-link>
-          <router-link to="/Music" class="nav-item">音乐</router-link>
+          <!--<router-link to="/Read" class="nav-item">读书</router-link>-->
+          <!--<router-link to="/Music" class="nav-item">音乐</router-link>-->
         </div>
       </div>
       <div class="header-r">

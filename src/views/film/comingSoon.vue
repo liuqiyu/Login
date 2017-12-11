@@ -1,6 +1,6 @@
 <template>
   <div>
-    <list :lists="lists" :requesting="requesting"></list>
+    <list :lists="lists" :requesting="requesting" :style="{height: contentHeight}"></list>
     <ixPagination v-if="showPage" :total="total" :size="size" :currentPage="currentPage"></ixPagination>
   </div>
 </template>
@@ -26,7 +26,8 @@
         size: 18,
         start: 0,
         showPage: false,
-        requesting: true
+        requesting: true,
+        contentHeight: 'auto'
       }
     },
     components: {
@@ -35,6 +36,7 @@
     },
     methods: {
       getDataList () {
+        this.$store.commit('content_height_update', ['.header-box', '.search-wrap', '.type-tabs', 37])
         this.requesting = true
         this.showPage = false
         this.$bus.$emit('hide/footer')

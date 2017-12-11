@@ -8,13 +8,11 @@
       <router-link to="/Film/ComingSoon">>查看即将上映</router-link>
       <router-link to="/Film/Top250">>查看Top250</router-link>
     </div>
-    <ixPagination v-if="showPage" :total="total" :size="size" :currentPage="currentPage"></ixPagination>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  import film from './../../api/film'
+  import read from './../../api/read'
   import list from './list'
   import ixPagination from '../../components/ixPagination'
 
@@ -58,7 +56,7 @@
         this.showList = true
         this.showPage = false
         this.$bus.$emit('hide/footer')
-        film.search(this.searchVal, this.size, this.start).then((res) => {
+        read.search(this.searchVal, this.size, this.start).then((res) => {
           if (res.status === 200) {
             const data = res.data.subjects
             this.lists = data
